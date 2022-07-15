@@ -4,5 +4,8 @@ function update_asdf_neovim_nightly --description 'Update asdf-neovim nightly'
     if test $OLD_VERSION != $VERSION
         asdf uninstall neovim nightly
         asdf install neovim nightly
+    else
+        echo "neovim (latest)nightly is already installed"
+        echo "version: $VERSION"
     end
 end

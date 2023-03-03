@@ -2,7 +2,7 @@ today = $(shell date "+%Y%m%d")
 product_name = update_asdf_neovim_nightly
 
 .PHONY : patch
-patch : clean diff-patch copy2win
+patch : clean diff-patch patch-copy2win
 
 .PHONY : diff-patch
 diff-patch :
@@ -12,13 +12,13 @@ diff-patch :
 patch-branch :
 	git switch -c patch-$(today)
 
-.PHONY : copy2win
-copy2win :
+.PHONY : patch-copy2win
+patch-copy2win :
 	cp *.patch $$WIN_HOME/Downloads/
 
 .PHONY : install
 install :
-	sudo cp ./$(product_name).sh ~/.local/bin/$(product_name)
+	bash utils/install.sh
 
 .PHONY : clean
 clean :
@@ -27,16 +27,14 @@ clean :
 
 .PHONY : lint
 lint :
-	shellcheck ./$(product_name).sh
+	bash utils/lint.sh
 
 .PHONY : test
 test : lint
 
 .PHONY : format
 format :
-	shfmt ./$(product_name).sh > ./fmt-$(product_name).sh
-	mv ./fmt-$(product_name).sh ./$(product_name).sh
-	chmod +x ./$(product_name).sh
+	bash utils/format.sh
 
 .PHONY : fmt
 fmt : format

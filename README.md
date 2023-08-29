@@ -1,4 +1,4 @@
-# update_asdf_neovim_nightly
+# update_asdf_neovim
 
 ## Requirements
 
@@ -8,6 +8,16 @@
 
 ## Install
 
+### Bash
+
 ```shell
-fisher install mimikun/update_asdf_neovim_nightly
+git clone https://github.com/mimikun/update_asdf_neovim.git
+cd update_asdf_neovim
+make install
+```
+
+### fish
+
+```shell
+fisher install mimikun/update_asdf_neovim
 ```

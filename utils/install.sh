@@ -15,4 +15,8 @@ run_install() {
 
 before_sudo
 run_install pueue_update_asdf_neovim_nightly
+run_install pueue_update_asdf_neovim_master
+run_install pueue_update_asdf_neovim_stable
 run_install update_asdf_neovim_nightly
+run_install update_asdf_neovim_master
+run_install update_asdf_neovim_stable

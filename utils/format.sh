@@ -9,7 +9,11 @@ run_shfmt() {
 }
 
 run_shfmt pueue_update_asdf_neovim_nightly.sh
+run_shfmt pueue_update_asdf_neovim_master.sh
+run_shfmt pueue_update_asdf_neovim_stable.sh
 run_shfmt update_asdf_neovim_nightly.sh
+run_shfmt update_asdf_neovim_master.sh
+run_shfmt update_asdf_neovim_stable.sh
 
 cd utils || exit
 run_shfmt format.sh

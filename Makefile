@@ -1,5 +1,5 @@
 today = $(shell date "+%Y%m%d")
-product_name = update_asdf_neovim_nightly
+product_name = update_asdf_neovim
 
 .PHONY : patch
 patch : clean diff-patch patch-copy2win

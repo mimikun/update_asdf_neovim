@@ -1,5 +1,23 @@
 # Changelog
 
+## [v2023.09.25] ( [v0.5.0] )
+
+### Added - 新機能について
+
+なし
+
+### Changed - 既存機能の変更について
+
+- Improved update_asdf_neovim.sh
+
+### Removed - 今回で削除された機能について
+
+- Remove unused scripts
+
+### Fixed - 不具合修正について
+
+- Fix Makefile
+
 ## [v2023.09.12]
 
 ### Added - 新機能について

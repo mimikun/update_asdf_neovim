@@ -40,9 +40,19 @@ clean :
 	rm -f fmt-*
 	rm -f *.patch
 
+.PHONY : test
+test : lint
+
 .PHONY : lint
 lint :
 	bash utils/lint.sh
+
+.PHONY : fmt
+fmt : format
+
+.PHONY : format
+format :
+	bash utils/format.sh
 
 .PHONY : copy2win-patch-raw
 copy2win-patch-raw :
@@ -54,31 +64,3 @@ copy2win-patch-gpg :
 
 .PHONY : copy2win-patch
 copy2win-patch : copy2win-patch-raw
-
-.PHONY : test
-test : lint
-
-.PHONY : lint
-lint : stylua-lint textlint typo-check
-
-.PHONY : stylua-lint
-stylua-lint :
-	stylua --check ./
-
-.PHONY : textlint
-textlint :
-	pnpm run lint
-
-.PHONY : typo-check
-typo-check :
-	typos .
-
-.PHONY : fmt
-fmt : format
-
-.PHONY : format
-format : stylua-format
-
-.PHONY : stylua-format
-stylua-format :
-	stylua ./

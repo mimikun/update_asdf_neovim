@@ -7,12 +7,14 @@ function update_asdf_neovim --description "Update asdf-neovim"
         echo "Update asdf-neovim"
         echo ""
         echo "Usage:"
-        echo "    $product_name <COMMAND>"
+        echo "    $product_name <COMMAND> <SUBCOMMANDS>"
         echo ""
         echo "Commands:"
         echo "  master                  Run update asdf neovim master"
         echo "  stable                  Run update asdf neovim stable"
         echo "  nightly                 Run update asdf neovim nightly"
+        echo "Command options:"
+        echo "  --use-pueue             Run command with pueue"
         echo ""
         echo "Options:"
         echo "    --version, -v, version    print $product_name version"
@@ -32,7 +34,11 @@ function update_asdf_neovim --description "Update asdf-neovim"
             echo "neovim (latest)master found!"
             echo $master_new_commit_hash >$neovim_master_commit_hash_file
             asdf uninstall neovim ref:master
-            asdf install neovim ref:master
+            if test $opt == "--use-pueue"
+                pueue add -- "asdf install neovim ref:master"
+            else
+                asdf install neovim ref:master
+            end
         else
             echo "neovim (latest)master is already installed"
             echo "commit hash: $master_commit_hash"
@@ -46,7 +52,11 @@ function update_asdf_neovim --description "Update asdf-neovim"
         if test $nvim_nightly_version != $nvim_nightly_new_version
             echo "neovim (latest)nightly found!"
             asdf uninstall neovim nightly
-            asdf install neovim nightly
+            if test $opt == "--use-pueue"
+                pueue add -- "asdf install neovim nightly"
+            else
+                asdf install neovim nightly
+            end
         else
             echo "neovim (latest)nightly is already installed"
             echo "version: $nvim_nightly_version"
@@ -60,7 +70,11 @@ function update_asdf_neovim --description "Update asdf-neovim"
         if test $nvim_stable_version != $nvim_stable_new_version
             echo "Update neovim (latest)stable!"
             asdf uninstall neovim stable
-            asdf install neovim stable
+            if test $opt == "--use-pueue"
+                pueue add -- "asdf install neovim stable"
+            else
+                asdf install neovim stable
+            end
         else
             echo "neovim (latest)nightly is already installed"
             echo "version: $nvim_stable_version"
